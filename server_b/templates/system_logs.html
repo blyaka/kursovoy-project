@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Серверные логи</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    h2 { margin-bottom: 10px; }
+    h3 { margin-top: 30px; background: #f4f4f4; padding: 10px; }
+    a {
+      display: inline-block;
+      margin-right: 15px;
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: #007BFF;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    pre {
+      background: #f9f9f9;
+      border: 1px solid #ccc;
+      padding: 15px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 30px 0;
+    }
+  </style>
+</head>
+<body>
+  <h2>Серверные системные логи</h2>
+  <a href="{{ url_for('logout') }}">Выйти</a>
+  <a href="{{ url_for('dashboard') }}">Логи приложения</a>
+
+  {% for logname, lines in logs.items() %}
+    <h3>{{ logname }}</h3>
+    <pre>
+{% for line in lines %}
+{{ line.strip() }}
+{% endfor %}
+    </pre>
+    <hr>
+  {% endfor %}
+</body>
+</html>

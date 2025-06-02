@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Панель логов</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { padding: 8px; border: 1px solid #ccc; }
+    th { background: #f4f4f4; }
+    .bad { background: #ffdddd; }
+  </style>
+</head>
+<body>
+  <h2>Журнал событий</h2>
+  <a href="{{ url_for('logout') }}">Выйти</a>
+  <a href="{{ url_for('system_logs') }}">Системные логи</a>
+  <table>
+    <thead>
+      <tr><th>Время</th><th>Событие</th><th>Инфо</th></tr>
+    </thead>
+    <tbody>
+      {% for log in logs %}
+        <tr class="{% if log.event in ['LOGIN_FAIL', 'CSRF_FAIL', 'ACTION_OPEN_ADMIN'] %}bad{% endif %}">
+          <td>{{ log.time }}</td>
+          <td>{{ log.event }}</td>
+          <td>{{ log.info }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

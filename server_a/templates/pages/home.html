@@ -1,0 +1,13 @@
+<ul>
+  {% if user.is_authenticated %}
+  <li><a href="/accounts/logout/">Выйти</a></li>
+  {% else %}
+  <li><a href="/accounts/login/">Войти</a></li>
+  {% endif %}
+  <li><a href="/delete-account/">Удалить аккаунт</a></li>
+  <li><a href="/admin/">Попробовать зайти в админку</a></li>
+  <li><a href="/test-csrf/">CSRF Fail</a></li>
+  <li><a href="/test500/">Ошибка 500</a></li>
+</ul>
+
+
